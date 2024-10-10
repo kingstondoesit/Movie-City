@@ -46,7 +46,7 @@ function MovieCard({ movie1 }: MovieCardProps) {
             target='_blank'
             rel='noopener noreferrer'
           >
-            {movie1.Title}
+            {`${movie1.Title}` + ` (${movie1.Year})`}
           </a>
         </h3>
       </div>
