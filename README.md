@@ -1,2 +1,2 @@
 # movie-city
-Movie and TV-Shows
+Movies and TV-Shows
