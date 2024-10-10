@@ -39,7 +39,7 @@ function MovieCard({ movie1 }: MovieCardProps) {
       </div>
 
       <div>
-        <span>{movie1.Type}</span>
+        <span>{movie1.Type === 'series'? `Tv Show` : `${movie1.Type}`}</span>
         <h3>
           <a
             href={`https://www.imdb.com/title/${movie1.imdbID}`}

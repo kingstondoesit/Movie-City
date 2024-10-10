@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import SearchIcon from '../public/search.svg';
+import SearchIcon from './assets/search.svg';
 import MovieCard from './MovieCard';
 
 // Define the shape of the movie data
@@ -21,7 +21,7 @@ interface ApiResponse {
 export function Movie() {
   const apiKey: string = import.meta.env.VITE_APP_API_KEY;
   const apiUrl: string = import.meta.env.VITE_APP_API_URL;
-
+   
   const [movies, setMovies] = useState<Movie[]>([]);
 
   const searchMovies = async (title: string) => {
@@ -37,7 +37,7 @@ export function Movie() {
         console.log('No movies found');
       }
     } catch (error) {
-      console.error('Error fetching movies:', error);
+      console.error('Error fetching movies:');
     }
   };
 

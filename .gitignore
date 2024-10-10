@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .env
+App_old.css
+style.css
