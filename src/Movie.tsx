@@ -21,12 +21,20 @@ interface ApiResponse {
 export function Movie() {
   const apiKey: string = import.meta.env.VITE_APP_API_KEY;
   const apiUrl: string = import.meta.env.VITE_APP_API_URL;
-   
+
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   const searchMovies = async (title: string) => {
+    setSearchQuery(title);
+
     try {
-      const API_URL = `${apiUrl}` + `${apiKey}&s=${title}`;
+      if (title.trim() === '') {
+        setMovies([]);
+        return;
+      }
+
+      const API_URL = `${apiUrl}${apiKey}&s=${title}`;
       const response = await fetch(API_URL);
       const data: ApiResponse = await response.json();
 
@@ -37,13 +45,10 @@ export function Movie() {
         console.log('No movies found');
       }
     } catch (error) {
-      console.error('Error fetching movies:');
+      console.error('Error fetching movies:', error);
+      setMovies([]);
     }
   };
-
-  useEffect(() => {
-    searchMovies(''); 
-  }, []);
 
   return (
     <>
@@ -57,11 +62,17 @@ export function Movie() {
         <img src={SearchIcon} alt='Search Icon' />
       </div>
 
-      <div className='container'>
-        {movies.map((movie) => (
-          <MovieCard key={movie.imdbID} movie1={movie} />
-        ))}
-      </div>
+      {searchQuery && (
+        <div className='container'>
+          {movies.length > 0 ? (
+            movies.map((movie) => (
+              <MovieCard key={movie.imdbID} movie1={movie} />
+            ))
+          ) : (
+            <h3 className='error'>Oops, something went wrong !!!</h3>
+          )}
+        </div>
+      )}
     </>
   );
 }
