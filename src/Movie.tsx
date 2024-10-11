@@ -25,7 +25,7 @@ export function Movie() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const searchMovies = async (title: string) => {
+  const searchMovies = async (title: string, pages: number = 5) => {
     setSearchQuery(title);
 
     try {
@@ -34,15 +34,34 @@ export function Movie() {
         return;
       }
 
-      const API_URL = `${apiUrl}${apiKey}&s=${title}`;
-      const response = await fetch(API_URL);
-      const data: ApiResponse = await response.json();
+      let allMovies: Movie[] = [];
+      for (let page = 1; page <= pages; page++) {
+        const API_URL = `${apiUrl}${apiKey}&s=${title}&page=${page}`;
+        const response = await fetch(API_URL);
+        const data: ApiResponse = await response.json();
 
-      if (data.Search) {
-        setMovies(data.Search);
-        console.log(data.Search);
-      } else {
-        console.log('No movies found');
+        if (data.Response === "False") {  
+          console.log('No movies found!');  
+          setMovies([]);  
+          return;
+      }  
+
+      if (data.Search && data.Search.length > 0) {  
+          allMovies = allMovies.concat(data.Search);  
+          setMovies(allMovies);  
+   
+          console.log(allMovies);  
+      }  
+
+      if (page === pages) {  
+          console.log('Page limit reached!');  
+          break;   
+      }  
+ 
+      if (data.Search.length < 10) {  
+          console.log('All results  returned!');  
+          break; 
+      }  
       }
     } catch (error) {
       console.error('Error fetching movies:', error);
@@ -57,24 +76,31 @@ export function Movie() {
         <input
           type='text'
           placeholder='Search for a movie...'
-          onChange={(e) => searchMovies(e.target.value)}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && searchMovies(searchQuery)}
         />
-        <img src={SearchIcon} alt='Search Icon' />
+        <img
+          src={SearchIcon}
+          alt='Search Icon'
+          onClick={() => searchMovies(searchQuery)}
+        />
       </div>
 
       {searchQuery && (
         <div className='container'>
           {movies.length > 0 ? (
             movies.map((movie) => (
-              <MovieCard key={movie.imdbID} movie1={movie} />
+              <MovieCard key={movie.imdbID} movie={movie} />
             ))
           ) : (
-            <h3 className='error'>Oops, something went wrong !!!</h3>
+            <h3 className='error'>No movies found</h3>
           )}
         </div>
       )}
     </>
   );
 }
+
+// omdb api returns only 10 results per requet so use this query http://www.omdbapi.com/?i=tt3896198&apikey=dd5fe5ff&s=boys&page=3 for pagination
 
 export default Movie;
