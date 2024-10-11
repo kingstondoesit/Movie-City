@@ -1,15 +1,9 @@
 import { useEffect, useState } from 'react';
 import SearchIcon from './assets/search.svg';
-import MovieCard from './MovieCard';
+import MovieCard, { MovieFeed } from './MovieCard';
 
 // Define the shape of the movie data
-interface Movie {
-  Title: string;
-  Year: string;
-  imdbID: string;
-  Type: string;
-  Poster: string;
-}
+interface Movie extends MovieFeed {}
 
 // Define the API response structure
 interface ApiResponse {
@@ -23,7 +17,20 @@ export function Movie() {
   const apiUrl: string = import.meta.env.VITE_APP_API_URL;
 
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [inputValue, setInputValue] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setSearchQuery(inputValue);
+      searchMovies(inputValue);
+    }
+  };
+
+  const handleSearchClick = () => {
+    setSearchQuery(inputValue);
+    searchMovies(inputValue);
+  };
 
   const searchMovies = async (title: string, pages: number = 5) => {
     setSearchQuery(title);
@@ -40,28 +47,28 @@ export function Movie() {
         const response = await fetch(API_URL);
         const data: ApiResponse = await response.json();
 
-        if (data.Response === "False") {  
-          console.log('No movies found!');  
-          setMovies([]);  
+        if (data.Response === 'False') {
+          console.log('No movies found!');
+          setMovies([]);
           return;
-      }  
+        }
 
-      if (data.Search && data.Search.length > 0) {  
-          allMovies = allMovies.concat(data.Search);  
-          setMovies(allMovies);  
-   
-          console.log(allMovies);  
-      }  
+        if (data.Search && data.Search.length > 0) {
+          allMovies = allMovies.concat(data.Search);
+          setMovies(allMovies);
 
-      if (page === pages) {  
-          console.log('Page limit reached!');  
-          break;   
-      }  
- 
-      if (data.Search.length < 10) {  
-          console.log('All results  returned!');  
-          break; 
-      }  
+          console.log(allMovies);
+        }
+
+        if (page === pages) {
+          console.log('Page limit reached!');
+          break;
+        }
+
+        if (data.Search.length < 10) {
+          console.log('All results  returned!');
+          break;
+        }
       }
     } catch (error) {
       console.error('Error fetching movies:', error);
@@ -76,14 +83,10 @@ export function Movie() {
         <input
           type='text'
           placeholder='Search for a movie...'
-          onChange={(e) => setSearchQuery(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && searchMovies(searchQuery)}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
-        <img
-          src={SearchIcon}
-          alt='Search Icon'
-          onClick={() => searchMovies(searchQuery)}
-        />
+        <img src={SearchIcon} alt='Search Icon' onClick={handleSearchClick} />
       </div>
 
       {searchQuery && (
