@@ -145,7 +145,7 @@ a:hover {
 }
 
 .app {
-  padding: 4rem;
+  padding: 4rem 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -202,7 +202,7 @@ h1 {
   display: flex;
   place-content: center;
   flex-direction: column;
-  margin-bottom: 2rem;
+  margin: 0 0.6rem 2rem 0.6rem;
   width: 300px;
   height: 460px;
   position: relative;
@@ -277,7 +277,7 @@ h1 {
 
 .movie div:nth-of-type(3) h3 {
   margin-top: 5px;
-  font-family: "Roboto Slab", serif;
+  font-family: 'Roboto Slab', serif;
   color: var(--color-brand-primary-2);
 }
 
@@ -286,8 +286,8 @@ h1 {
   opacity: 0;
 }
 
-.movie>div:nth-of-type(3):hover{
-  background-color:var(--bg-card-span);
+.movie > div:nth-of-type(3):hover {
+  background-color: var(--bg-card-span);
   opacity: 1;
 }
 
@@ -304,6 +304,12 @@ h1 {
   color: var(--color-brand-primary);
   font-family: var(--font-raleway);
 }
+
+/* @media screen and (min-width: 800px) {
+  .movie {
+    margin: auto;
+  }
+} */
 
 @media screen and (max-width: 600px) {
   .app {
