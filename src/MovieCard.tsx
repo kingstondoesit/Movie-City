@@ -1,36 +1,33 @@
 import React from 'react';
 
-// Define Movie interface
-interface Movie {
-  Title: string;
-  Year: string;
-  imdbID: string;
-  Type: string;
-  Poster: string;
-}
-
-// Define prop type for MovieCard component
+// Define Moviecardprops and movie interface
 interface MovieCardProps {
-  movie1: Movie;
+  movie: {
+    Title: string;
+    Year: string;
+    imdbID: string;
+    Type: string;
+    Poster: string;
+  };
 }
 
-function MovieCard({ movie1 }: MovieCardProps) {
+function MovieCard({ movie }: MovieCardProps) {
   return (
     <div className='movie'>
       <div>
-        <p>{movie1.Year}</p>
+        <p>{movie.Year}</p>
       </div>
 
       <div>
         <a
-          href={`https://www.imdb.com/title/${movie1.imdbID}`}
+          href={`https://www.imdb.com/title/${movie.imdbID}`}
           target='_blank'
           rel='noopener noreferrer'
         >
           <img
             src={
-              movie1.Poster !== 'N/A'
-                ? movie1.Poster
+              movie.Poster !== 'N/A'
+                ? movie.Poster
                 : 'https://via.placeholder.com/400'
             }
             alt='Movie Poster'
@@ -39,14 +36,14 @@ function MovieCard({ movie1 }: MovieCardProps) {
       </div>
 
       <div>
-        <span>{movie1.Type === 'series'? `Tv Show` : `${movie1.Type}`}</span>
+        <span>{movie.Type === 'series' ? `Tv Show` : `${movie.Type}`}</span>
         <h3>
           <a
-            href={`https://www.imdb.com/title/${movie1.imdbID}`}
+            href={`https://www.imdb.com/title/${movie.imdbID}`}
             target='_blank'
             rel='noopener noreferrer'
           >
-            {`${movie1.Title}` + ` (${movie1.Year})`}
+            {`${movie.Title}` + ` (${movie.Year})`}
           </a>
         </h3>
       </div>
