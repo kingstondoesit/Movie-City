@@ -34,15 +34,6 @@
   --bg-dark-1: hsla(224deg, 68%, 10%, 1);
   --bg-dark-2: hsla(224deg, 68%, 15%, 1);
   --bg-card-span: hsl(225, 68%, 7%);
-  --work-tuhoon: #daedea;
-  --work-accounting: #f5ecaf;
-  --work-news: #e0ecf8;
-  --work-foodie: #ebbbbb;
-  --work-gooddeeds: #e7cad0;
-  --work-afiyah: #f1f7ee;
-  --work-travel: #ddf1f4;
-  --work-mansoub: #eafcff;
-  --work-ink: #fcfaf8;
   --logo-text-color: var(--color-brand-primary);
   --logo-text-desc-color: var(--color-body);
   --logo-border-color: var(--color-brand-white);
@@ -57,24 +48,6 @@
   --theme-switch-active-item-bg: rgba(0, 0, 0, 0.1);
   --hero-title-highlight-color: var(--color-brand-primary);
   --hero-desc-color: var(--color-body);
-  --section-title-color: var(--color-brand-primary);
-  --button-secondary-border-color: lightgrey;
-  --button-secondary-bg-color: var(--color-brand-white);
-  --button-secondary-text-color: #222;
-  --button-primary-border-color: var(--color-brand-primary);
-  --button-primary-bg-color: var(--color-brand-primary);
-  --button-primary-text-color: var(--color-brand-white);
-  --article-border-color: rgba(0, 0, 0, 0.1);
-  --article-img-border-color: lightgrey;
-  --article-title-text-color: var(--color-brand-primary);
-  --article-time-text-color: #323d5e;
-  --work-title-title-color: #474854;
-  --work-title-desc-color: #474854;
-  --work-item-border-color: rgba(0, 0, 0, 0.07);
-  --quote-item-title-color: var(--color-brand-black);
-  --tag-color: #222;
-  --tag-bg-color: var(--color-bg-1);
-  --tag-total-bg-color: var(--color-bg-1-dark);
 }
 
 :root.dark {
@@ -96,20 +69,6 @@
   --hero-title-highlight-color: var(--color-brand-primary-2);
   --hero-desc-color: #ccd7fa;
   --section-title-color: var(--color-brand-primary-2);
-  --button-secondary-border-color: rgba(255, 255, 255, 0.2);
-  --button-secondary-bg-color: var(--bg-dark-1);
-  --button-secondary-text-color: var(--color-brand-white);
-  --article-border-color: rgba(255, 255, 255, 0.1);
-  --article-img-border-color: transparent;
-  --article-title-text-color: var(--color-brand-white);
-  --article-time-text-color: var(--text-secondary);
-  --work-title-title-color: var(--color-brand-white);
-  --work-title-desc-color: var(--text-secondary);
-  --work-item-border-color: transparent;
-  --quote-item-title-color: #ccd7fa;
-  --tag-color: var(--color-brand-white);
-  --tag-bg-color: rgba(255, 255, 255, 0.1);
-  --tag-total-bg-color: rgba(255, 255, 255, 0.3);
 }
 
 .dark {
