@@ -15,7 +15,7 @@
   --color-black: #f9d3b448;
   --color-brand-primary: #f5c783;
   --color-brand-primary-2: #f0b660;
-  --color-brand-secondary: #8576ff;
+  --color-brand-secondary: hsl(41, 57%, 74%);
   --color-brand-black: #0e215d;
   --color-brand-white: #fff;
   --color-bg-1: #f6f8fd;
@@ -89,11 +89,6 @@ a:hover {
   opacity: 0.8;
 }
 
-.error {
-  color: var(--bg-color-line);
-  font-family: var(--font-raleway);
-  font-weight: 500;
-}
 .container {
   width: 100%;
   margin-top: 2rem;
@@ -253,15 +248,25 @@ h1 {
 .empty {
   width: 100%;
   margin-top: 3rem;
+  margin-left: 1.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .empty h2 {
-  font-size: 1.25rem;
-  color: var(--color-brand-primary);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.9px;
+  color: var(--color-brand-secondary);
   font-family: var(--font-raleway);
+}
+
+.error {
+  margin-top: 2rem;
+  color: var(--bg-color-line);
+  font-family: var(--font-raleway);
+  font-weight: 500;
 }
 
 /* @media screen and (min-width: 800px) {

@@ -17,27 +17,18 @@ export function Movie() {
   const apiUrl: string = import.meta.env.VITE_APP_API_URL;
 
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState<boolean>(false); 
   const [inputValue, setInputValue] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      setSearchQuery(inputValue);
-      searchMovies(inputValue);
-    }
-  };
-
-  const handleSearchClick = () => {
-    setSearchQuery(inputValue);
-    searchMovies(inputValue);
-  };
-
   const searchMovies = async (title: string, pages: number = 5) => {
     setSearchQuery(title);
+    setLoading(true); 
 
     try {
       if (title.trim() === '') {
         setMovies([]);
+        setLoading(false); 
         return;
       }
 
@@ -50,13 +41,13 @@ export function Movie() {
         if (data.Response === 'False') {
           console.log('No movies found!');
           setMovies([]);
+          setLoading(false); 
           return;
         }
 
         if (data.Search && data.Search.length > 0) {
           allMovies = allMovies.concat(data.Search);
           setMovies(allMovies);
-
           console.log(allMovies);
         }
 
@@ -66,14 +57,29 @@ export function Movie() {
         }
 
         if (data.Search.length < 10) {
-          console.log('All results  returned!');
+          console.log('All results returned!');
           break;
         }
       }
+      setLoading(false); 
+
     } catch (error) {
       console.error('Error fetching movies:', error);
       setMovies([]);
+      setLoading(false);
     }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setSearchQuery(inputValue);
+      searchMovies(inputValue);
+    }
+  };
+
+  const handleSearchClick = () => {
+    setSearchQuery(inputValue);
+    searchMovies(inputValue);
   };
 
   return (
@@ -91,19 +97,19 @@ export function Movie() {
 
       {searchQuery && (
         <div className='container'>
-          {movies.length > 0 ? (
+          {loading ? (
+            <div className='empty'><h2>Loading movies . . .</h2></div> 
+          ) : movies.length > 0 ? (
             movies.map((movie) => (
               <MovieCard key={movie.imdbID} movie={movie} />
             ))
           ) : (
-            <h3 className='error'>No movies found</h3>
+            <h3 className='error'>No movies found</h3> 
           )}
         </div>
       )}
     </>
   );
 }
-
-// omdb api returns only 10 results per requet so use this query http://www.omdbapi.com/?i=tt3896198&apikey=dd5fe5ff&s=boys&page=3 for pagination
 
 export default Movie;
