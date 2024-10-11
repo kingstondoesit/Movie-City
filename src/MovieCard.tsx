@@ -1,12 +1,14 @@
 // Define Moviecardprops and movie interface
-export interface MovieCardProps {
-  movie: {
-    Title: string;
-    Year: string;
-    imdbID: string;
-    Type: string;
-    Poster: string;
-  };
+export interface MovieFeed {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+}
+
+interface MovieCardProps {
+  movie: MovieFeed;
 }
 
 function MovieCard({ movie }: MovieCardProps) {
