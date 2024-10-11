@@ -1,7 +1,5 @@
-import React from 'react';
-
 // Define Moviecardprops and movie interface
-interface MovieCardProps {
+export interface MovieCardProps {
   movie: {
     Title: string;
     Year: string;
