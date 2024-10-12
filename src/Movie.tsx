@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import SearchIcon from './assets/search.svg';
-import MovieCard, { MovieFeed } from './MovieCard';
+import MovieCard, { MovieFeed } from './components/MovieCard';
 
 // Define the shape of the movie data
 interface Movie extends MovieFeed {}
@@ -98,7 +98,7 @@ export function Movie() {
       {searchQuery && (
         <div className='container'>
           {loading ? (
-            <div className='empty'><h2>Loading movies . . .</h2></div> 
+            <div className='empty'><h3>Fetching . . .</h3></div> 
           ) : movies.length > 0 ? (
             movies.map((movie) => (
               <MovieCard key={movie.imdbID} movie={movie} />
