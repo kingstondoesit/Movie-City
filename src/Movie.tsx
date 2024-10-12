@@ -89,7 +89,7 @@ export function Movie() {
         <input
           type='text'
           placeholder='Search for a movie...'
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => setInputValue((e.target.value).trim())}
           onKeyDown={handleKeyDown}
         />
         <img src={SearchIcon} alt='Search Icon' onClick={handleSearchClick} />
