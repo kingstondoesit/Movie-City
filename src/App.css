@@ -15,7 +15,7 @@
   --color-black: #f9d3b448;
   --color-brand-primary: #f5c783;
   --color-brand-primary-2: #f0b660;
-  --color-brand-secondary: hsl(41, 57%, 74%);
+  --color-brand-secondary: #f0c075;
   --color-brand-black: #0e215d;
   --color-brand-white: #fff;
   --color-bg-1: #f6f8fd;
@@ -78,6 +78,18 @@
 body {
   font-family: var(--font-roboto);
   background-color: var(--bg-dark-1);
+}
+
+ul {
+  list-style-type: none;
+  /* padding: 0; 
+  margin: 0;  */
+}
+
+ol {
+  list-style-type: none;
+  /* padding: 0;
+  margin: 0; */
 }
 
 a {
@@ -254,10 +266,10 @@ h1 {
   align-items: center;
 }
 
-.empty h2 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: 0.9px;
+.empty h3 {
+  /* font-size: 1.5rem; */
+  font-weight: 600;
+  letter-spacing: 0.8px;
   color: var(--color-brand-secondary);
   font-family: var(--font-raleway);
 }
@@ -267,6 +279,20 @@ h1 {
   color: var(--bg-color-line);
   font-family: var(--font-raleway);
   font-weight: 500;
+}
+
+.db {
+  margin-top: 2rem;
+  color: var(--color-brand-secondary);
+  font-family: var(--font-raleway);
+}
+
+.data {
+  margin-top: 2rem;
+  color: var(--bg-color-line);
+  font-family: var(--font-raleway);
+  font-weight: 500;
+  line-height: 1.8rem;
 }
 
 /* @media screen and (min-width: 800px) {
