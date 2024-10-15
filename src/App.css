@@ -34,6 +34,9 @@
   --bg-dark-1: hsla(224deg, 68%, 10%, 1);
   --bg-dark-2: hsla(224deg, 68%, 15%, 1);
   --bg-card-span: hsl(225, 68%, 7%);
+  --bg-button-disabled: #8d8585;
+  --bg-pagination-active: #1a4086;
+  --bg-pagination-hover: #0056b3;
   --logo-text-color: var(--color-brand-primary);
   --logo-text-desc-color: var(--color-body);
   --logo-border-color: var(--color-brand-white);
@@ -294,6 +297,44 @@ h1 {
   font-weight: 500;
   line-height: 1.8rem;
 }
+
+/* Pagination UI */
+.pagination {  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;  
+  margin: 3rem 0;  
+  gap: 30px;  
+}  
+
+.pagination button {  
+  background-color: var(--bg-pagination-active); /* Bootstrap primary color */  
+  color: var(--color-brand-white);  
+  border: none;  
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;  
+  cursor: pointer;  
+  transition: background-color 0.3s ease;
+  font-family: var(--font-raleway);  
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.pagination button:disabled {  
+  background-color: var(--bg-button-disabled);
+  cursor: not-allowed;  
+}  
+
+.pagination button:hover:not(:disabled) {  
+  background-color: var(--bg-pagination-hover);
+}  
+
+.pagination span {  
+  font-size: 16px;  
+  font-weight: bold;
+  color: var(--color-brand-primary-2);  
+}  
 
 /* @media screen and (min-width: 800px) {
   .movie {
