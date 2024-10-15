@@ -24,6 +24,8 @@ dist-ssr
 *.sw?
 
 .env
+
 style.css
 SupabaseTest.tsx
 backup
+
