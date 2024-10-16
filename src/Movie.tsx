@@ -135,8 +135,7 @@ export function Movie() {
 
       // Scroll to the top of the page
       window.scrollTo({
-        top: document.getElementById('top')?.offsetTop || 0,
-        behavior: 'smooth',
+        top: 0,
       });
 
       return newPage;
@@ -145,7 +144,7 @@ export function Movie() {
 
   return (
     <>
-      <h1 id='#top'>MovieCity</h1>
+      <h1 id='#'>MovieCity</h1>
       <div className='search'>
         <input
           type='text'
