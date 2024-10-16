@@ -37,43 +37,43 @@ export function Movie() {
     if (abortController) {
       abortController.abort(); // Abort previous search
     }
-  
+
     const newAbortController = new AbortController();
     setAbortController(newAbortController);
     setLoading(true);
     setSearchQuery(title);
-  
+
     try {
       if (title.trim() === '') {
         setMovies([]);
         setLoading(false);
         return;
       }
-  
+
       // Fetch the first page immediately
       const API_URL = `${apiUrl}${apiKey}&s=${title}&page=1`;
       const response = await fetch(API_URL, {
         signal: newAbortController.signal,
       });
-  
+
       if (!response.ok) {
         throw new Error('Failed to fetch movies');
       }
-  
+
       const data: ApiResponse = await response.json();
-  
+
       if (data.Response === 'False') {
         setMovies([]);
         setLoading(false);
         return;
       }
-  
+
       // Set the movies for the first page
       setMovies(data.Search);
-      
+
       // Stop loading immediately after fetching the first page
       setLoading(false);
-  
+
       // Fetch subsequent pages in the background
       await fetchAllPages(title, 2);
     } catch (error: any) {
@@ -130,17 +130,21 @@ export function Movie() {
 
   const handlePageChange = (direction: 'next' | 'prev') => {
     setCurrentPage((prevPage) => {
-      if (direction === 'next') {
-        return prevPage + 1;
-      } else {
-        return Math.max(prevPage - 1, 1);
-      }
+      const newPage =
+        direction === 'next' ? prevPage + 1 : Math.max(prevPage - 1, 1);
+
+      // Scroll to the top of the page
+      window.scrollTo({
+        top: 0,
+      });
+
+      return newPage;
     });
   };
 
   return (
     <>
-      <h1>MovieCity</h1>
+      <h1 id='#'>MovieCity</h1>
       <div className='search'>
         <input
           type='text'
