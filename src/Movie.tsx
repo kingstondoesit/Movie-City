@@ -131,7 +131,7 @@ export function Movie() {
   const handlePageChange = (direction: 'next' | 'prev') => {
     setCurrentPage((prevPage) => {
       const newPage =
-        direction === 'next' ? prevPage + 1 : Math.max(prevPage - 1, 1);
+        direction === 'next' ? prevPage + 1 : Math.max(prevPage - 1, 1); // if direction is 'next' increment prevPage by 1, else compare the max value between 1 and prevPage minus 1 and select it
 
       // Scroll to the top of the page
       window.scrollTo({
